@@ -346,9 +346,6 @@ function update(store, updater, patchesCallback) {
             store._updateState(nextState);
         }
     }
-}function InjectStoreState({ store, on = s => s, children, }) {
-    const state = useStoreState(store, on);
-    return children(state);
 }var EAsyncEndTags;
 (function (EAsyncEndTags) {
     EAsyncEndTags["THREW_ERROR"] = "THREW_ERROR";
@@ -1238,21 +1235,6 @@ function useStores() {
 }
 function useInstance() {
     return useContext(PullstateContext);
-}var EAsyncActionInjectType;
-(function (EAsyncActionInjectType) {
-    EAsyncActionInjectType["WATCH"] = "watch";
-    EAsyncActionInjectType["BECKON"] = "beckon";
-})(EAsyncActionInjectType || (EAsyncActionInjectType = {}));
-function InjectAsyncAction(props) {
-    if (props.type === EAsyncActionInjectType.BECKON) {
-        const response = props.action.useBeckon(props.args, props.options);
-        return props.children(response);
-    }
-    const response = props.action.useWatch(props.args, props.options);
-    return props.children(response);
-}function InjectStoreStateOpt({ store, paths, children }) {
-    const state = useStoreStateOpt(store, paths);
-    return children(state);
 }function registerInDevtools(stores, { namespace = "" } = {}) {
     var _a;
     const devToolsExtension = typeof window !== "undefined" ? (_a = window) === null || _a === void 0 ? void 0 : _a.__REDUX_DEVTOOLS_EXTENSION__ : undefined;
@@ -1278,4 +1260,4 @@ function InjectAsyncAction(props) {
             });
         }
     }
-}export{EAsyncActionInjectType,EAsyncEndTags,EPostActionContext,InjectAsyncAction,InjectStoreState,InjectStoreStateOpt,PullstateContext,PullstateProvider,Store,createAsyncAction,createAsyncActionDirect,createPullstateCore,errorResult,registerInDevtools,successResult,update,useInstance,useLocalStore,useStoreState,useStoreStateOpt,useStores};
+}export{EAsyncEndTags,EPostActionContext,PullstateContext,PullstateProvider,Store,createAsyncAction,createAsyncActionDirect,createPullstateCore,errorResult,registerInDevtools,successResult,update,useInstance,useLocalStore,useStoreState,useStoreStateOpt,useStores};

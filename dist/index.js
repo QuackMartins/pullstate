@@ -346,9 +346,6 @@ function update(store, updater, patchesCallback) {
             store._updateState(nextState);
         }
     }
-}function InjectStoreState({ store, on = s => s, children, }) {
-    const state = useStoreState(store, on);
-    return children(state);
 }(function (EAsyncEndTags) {
     EAsyncEndTags["THREW_ERROR"] = "THREW_ERROR";
     EAsyncEndTags["RETURNED_ERROR"] = "RETURNED_ERROR";
@@ -1236,20 +1233,6 @@ function useStores() {
 }
 function useInstance() {
     return React.useContext(PullstateContext);
-}(function (EAsyncActionInjectType) {
-    EAsyncActionInjectType["WATCH"] = "watch";
-    EAsyncActionInjectType["BECKON"] = "beckon";
-})(exports.EAsyncActionInjectType || (exports.EAsyncActionInjectType = {}));
-function InjectAsyncAction(props) {
-    if (props.type === exports.EAsyncActionInjectType.BECKON) {
-        const response = props.action.useBeckon(props.args, props.options);
-        return props.children(response);
-    }
-    const response = props.action.useWatch(props.args, props.options);
-    return props.children(response);
-}function InjectStoreStateOpt({ store, paths, children }) {
-    const state = useStoreStateOpt(store, paths);
-    return children(state);
 }function registerInDevtools(stores, { namespace = "" } = {}) {
     var _a;
     const devToolsExtension = typeof window !== "undefined" ? (_a = window) === null || _a === void 0 ? void 0 : _a.__REDUX_DEVTOOLS_EXTENSION__ : undefined;
@@ -1275,4 +1258,4 @@ function InjectAsyncAction(props) {
             });
         }
     }
-}exports.InjectAsyncAction=InjectAsyncAction;exports.InjectStoreState=InjectStoreState;exports.InjectStoreStateOpt=InjectStoreStateOpt;exports.PullstateContext=PullstateContext;exports.PullstateProvider=PullstateProvider;exports.Store=Store;exports.createAsyncAction=createAsyncAction;exports.createAsyncActionDirect=createAsyncActionDirect;exports.createPullstateCore=createPullstateCore;exports.errorResult=errorResult;exports.registerInDevtools=registerInDevtools;exports.successResult=successResult;exports.update=update;exports.useInstance=useInstance;exports.useLocalStore=useLocalStore;exports.useStoreState=useStoreState;exports.useStoreStateOpt=useStoreStateOpt;exports.useStores=useStores;
+}exports.PullstateContext=PullstateContext;exports.PullstateProvider=PullstateProvider;exports.Store=Store;exports.createAsyncAction=createAsyncAction;exports.createAsyncActionDirect=createAsyncActionDirect;exports.createPullstateCore=createPullstateCore;exports.errorResult=errorResult;exports.registerInDevtools=registerInDevtools;exports.successResult=successResult;exports.update=update;exports.useInstance=useInstance;exports.useLocalStore=useLocalStore;exports.useStoreState=useStoreState;exports.useStoreStateOpt=useStoreStateOpt;exports.useStores=useStores;

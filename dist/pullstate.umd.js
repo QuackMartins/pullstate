@@ -430,11 +430,6 @@
       }
   }
 
-  function InjectStoreState({ store, on = s => s, children, }) {
-      const state = useStoreState(store, on);
-      return children(state);
-  }
-
   (function (EAsyncEndTags) {
       EAsyncEndTags["THREW_ERROR"] = "THREW_ERROR";
       EAsyncEndTags["RETURNED_ERROR"] = "RETURNED_ERROR";
@@ -1328,24 +1323,6 @@ further looping. Fix in your cacheBreakHook() is needed.`);
       return React.useContext(PullstateContext);
   }
 
-  (function (EAsyncActionInjectType) {
-      EAsyncActionInjectType["WATCH"] = "watch";
-      EAsyncActionInjectType["BECKON"] = "beckon";
-  })(exports.EAsyncActionInjectType || (exports.EAsyncActionInjectType = {}));
-  function InjectAsyncAction(props) {
-      if (props.type === exports.EAsyncActionInjectType.BECKON) {
-          const response = props.action.useBeckon(props.args, props.options);
-          return props.children(response);
-      }
-      const response = props.action.useWatch(props.args, props.options);
-      return props.children(response);
-  }
-
-  function InjectStoreStateOpt({ store, paths, children }) {
-      const state = useStoreStateOpt(store, paths);
-      return children(state);
-  }
-
   function registerInDevtools(stores, { namespace = "" } = {}) {
       var _a;
       const devToolsExtension = typeof window !== "undefined" ? (_a = window) === null || _a === void 0 ? void 0 : _a.__REDUX_DEVTOOLS_EXTENSION__ : undefined;
@@ -1373,9 +1350,6 @@ further looping. Fix in your cacheBreakHook() is needed.`);
       }
   }
 
-  exports.InjectAsyncAction = InjectAsyncAction;
-  exports.InjectStoreState = InjectStoreState;
-  exports.InjectStoreStateOpt = InjectStoreStateOpt;
   exports.PullstateContext = PullstateContext;
   exports.PullstateProvider = PullstateProvider;
   exports.Store = Store;
